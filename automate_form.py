@@ -57,7 +57,7 @@ def attendance():
     time_out_h.send_keys(f_ran_hour)
     time_out_m.send_keys(f_ran_min)
     note.send_keys("Emeka's attendance")
-    form.click()
+    #form.click()
 
 
 def main():
@@ -68,3 +68,5 @@ def main():
             attendance()
 
 
+get_time()
+attendance()
