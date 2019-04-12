@@ -4,7 +4,8 @@ from time import gmtime, strftime
 import random as random
 from random import randrange
 import time
-
+import smtplib
+import config
 
 def get_time():
     global d
@@ -13,6 +14,7 @@ def get_time():
     global f_ran_min
     global f_ran_hour
     global t_time
+    global _timer
 
     d = date.today()
     s_ran_hour = random.randint(8, 9)
@@ -20,7 +22,7 @@ def get_time():
     f_ran_hour = random.randint(21, 23)
     f_ran_min = randrange(60)
     t_time = '{}:{}'.format(f_ran_hour, f_ran_min)
-    _timer = datetime(d.year, d.month, d.day, f_ran_hour, f_ran_min)
+    _timer = datetime(d.year, d.month, d.day, f_ran_hour, f_ran_min).strftime("%d/%m/%y %H:%M")
 
 
 def initialization():
@@ -29,6 +31,18 @@ def initialization():
     driver = webdriver.Chrome(executable_path=r"C:\Program Files\chrome driver\chromedriver.exe")
     driver.get('https://goo.gl/forms/EW8UxiE56ACtYrS73')
 
+
+def send_email():
+    try:
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(config.email_address, config.password)
+        subject = 'Attendance form'
+        msg = 'Attendance done for {}'.format(_timer)
+        message = 'Subject: {}\n\n{}'.format(subject, msg)
+        server.sendmail()
+        server.quit()
 
 def attendance():
     initialization()
