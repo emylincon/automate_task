@@ -7,6 +7,7 @@ import time
 import smtplib
 import config
 
+
 def get_time():
     global d
     global s_ran_hour
@@ -41,8 +42,12 @@ def send_email():
         subject = 'Attendance form'
         msg = 'Attendance done for {}'.format(_timer)
         message = 'Subject: {}\n\n{}'.format(subject, msg)
-        server.sendmail()
+        server.sendmail(config.email_address, config.send_email, message)
         server.quit()
+        print("Email sent!")
+    except Exception as e:
+        print(e)
+
 
 def attendance():
     initialization()
@@ -90,4 +95,5 @@ def main():
 
 
 get_time()
-attendance()
+#attendance()
+send_email()
