@@ -86,6 +86,7 @@ def main():
             print('--------------------------------------------')
             print("Running Emeka's Script, Please do not close")
             print('--------------------------------------------')
+            print('Program is active...')
             get_time()
             while True:
                 time_now = datetime.now().strftime("%H:%M")
@@ -93,6 +94,7 @@ def main():
                     attendance()
                     send_email()
                     print(msg)
+                    print('Program is Sleeping for 20 hours')
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
