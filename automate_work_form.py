@@ -3,6 +3,7 @@ from datetime import *
 import calendar
 import getpass as gp
 import schedule
+import time
 
 
 __author__ = 'Emmanuel'
@@ -107,6 +108,38 @@ def lucia():
     okay.click()
 
 
+def lucia_prepare():
+    initialization()
+    select_MIP = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__1"]').click()
+    select_OK = driver.find_element_by_xpath(
+        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
+    select_OK.click()
+
+    add_hours = driver.find_element_by_xpath(
+        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a').click()
+
+    work_date = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldWorkDte_dateInput"]')
+
+    start_time = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldStTime"]')
+
+    finish_time = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldEnTime"]')
+
+    hours_worked = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldActHours"]')
+
+    sick_hours = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldSickHours"]')
+
+    comment = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldComment"]')
+    work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
+    start_time.send_keys('18:00')
+    finish_time.send_keys('19:00')
+    hours_worked.send_keys('1')
+    sick_hours.send_keys('0')
+    comment.send_keys('Preparation: ICT Project Management in Practice')
+    okay = driver.find_element_by_xpath(
+        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
+    okay.click()
+
+
 def iot():
     initialization()
     select_iot = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__2"]').click()
@@ -147,10 +180,18 @@ def iot():
 
 
 def main():
+    print('--------------------------------------------')
+    print("Running Emeka's Script, Please do not close")
+    print('--------------------------------------------')
+    print('Program is active...')
     schedule.every().tuesday.at("18:30").do(francis(_day()))
     schedule.every().wednesday.at("15:00").do(lucia)
+    schedule.every().wednesday.at("15:00").do(lucia_prepare)
     schedule.every().thursday.at("14:00").do(francis(_day))
     schedule.every().thursday.at("19:00").do(iot)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 if __name__ == "__main__":
