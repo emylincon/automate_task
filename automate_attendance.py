@@ -86,8 +86,8 @@ def main():
             print('--------------------------------------------')
             print("Running Emeka's Script, Please do not close")
             print('--------------------------------------------')
-            print('Program is active...')
             get_time()
+            print('Program is due to act on {}'.format(t_time))
             while True:
                 time_now = datetime.now().strftime("%H:%M")
                 if time_now == t_time:
