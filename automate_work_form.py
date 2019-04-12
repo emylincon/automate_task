@@ -1,6 +1,7 @@
 from selenium import webdriver
 from datetime import *
 import calendar
+import getpass as gp
 
 
 __author__ = 'Emmanuel'
@@ -15,6 +16,7 @@ def _day():
 def initialization():
     global driver
 
+    passwd = gp.getpass('Password: ').strip()
     driver = webdriver.Chrome(executable_path=r"C:\Program Files\chrome driver\chromedriver.exe")
     driver.get('https://mypayments.lsbu.ac.uk/vts/')
     username = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldUserName"]')
@@ -22,7 +24,7 @@ def initialization():
     login = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_cmdBar"]/div/div/div/ul/li[1]/a/span/span/span/span')
 
     username.send_keys('ugwuane3')
-    password.send_keys('1coolnigga')
+    password.send_keys(passwd)
 
     login.click()
 
