@@ -2,6 +2,7 @@ from selenium import webdriver
 from datetime import *
 import calendar
 import getpass as gp
+import schedule
 
 
 __author__ = 'Emmanuel'
@@ -10,7 +11,8 @@ d = date.today()
 
 
 def _day():
-    return calendar.day_name[d.weekday()]
+    x = calendar.day_name[d.weekday()]
+    return x.lower()
 
 
 def initialization():
@@ -142,3 +144,14 @@ def iot():
 #francis('thursday')
 #lucia()
 #iot()
+
+
+def main():
+    schedule.every().tuesday.at("18:30").do(francis(_day()))
+    schedule.every().wednesday.at("15:00").do(lucia)
+    schedule.every().thursday.at("14:00").do(francis(_day))
+    schedule.every().thursday.at("19:00").do(iot)
+
+
+if __name__ == "__main__":
+    main()
