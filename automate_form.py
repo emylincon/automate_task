@@ -61,11 +61,16 @@ def attendance():
 
 
 def main():
-    while True:
-        get_time()
-        time_now = datetime.now().strftime("%H:%M")
-        if time_now == t_time:
-            attendance()
+    try:
+        while True:
+            get_time()
+            while True:
+                time_now = datetime.now().strftime("%H:%M")
+                if time_now == t_time:
+                    attendance()
+                    break
+    except KeyboardInterrupt:
+        print('\nProgramme Terminated')
 
 
 get_time()
