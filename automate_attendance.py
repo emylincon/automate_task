@@ -34,6 +34,7 @@ def initialization():
 
 
 def send_email():
+    global msg
     try:
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.ehlo()
@@ -82,12 +83,16 @@ def attendance():
 def main():
     try:
         while True:
+            print('--------------------------------------------')
+            print("Running Emeka's Script, Please do not close")
+            print('--------------------------------------------')
             get_time()
             while True:
                 time_now = datetime.now().strftime("%H:%M")
                 if time_now == t_time:
                     attendance()
                     send_email()
+                    print(msg)
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
@@ -97,3 +102,5 @@ def main():
         print('\nProgramme Terminated')
 
 
+if __name__ == "__main__":
+    main()
