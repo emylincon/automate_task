@@ -3,6 +3,7 @@ from datetime import *
 from time import gmtime, strftime
 import random as random
 from random import randrange
+import time
 
 
 def get_time():
@@ -68,6 +69,7 @@ def main():
                 time_now = datetime.now().strftime("%H:%M")
                 if time_now == t_time:
                     attendance()
+                    time.sleep(60)
                     break
     except KeyboardInterrupt:
         print('\nProgramme Terminated')
