@@ -91,6 +91,8 @@ def main():
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
+                else:
+                    time.sleep(50)
     except KeyboardInterrupt:
         print('\nProgramme Terminated')
 
