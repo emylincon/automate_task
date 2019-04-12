@@ -41,7 +41,7 @@ def send_email():
         server.login(config.email_address, config.password)
         subject = 'Attendance form'
         msg = 'Attendance done for {}'.format(_timer)
-        message = 'Subject: {}\n\n{}'.format(subject, msg)
+        message = 'Subject: {}\n\n{}\n\n SENT BY RIHANNA \n\n'.format(subject, msg)
         server.sendmail(config.email_address, config.send_email, message)
         server.quit()
         print("Email sent!")
@@ -71,13 +71,12 @@ def attendance():
     surname.send_keys('Ugwuanyi')
     office_no.send_keys('FW210')
     date_.send_keys('{}/{}/{}'.format(d.day, d.month, d.year))
-    #date_.send_keys('04/04/2019')
     time_in_m.send_keys(s_ran_min)
     time_in_h.send_keys(s_ran_hour)
     time_out_h.send_keys(f_ran_hour)
     time_out_m.send_keys(f_ran_min)
     note.send_keys("Emeka's attendance")
-    #form.click()
+    form.click()
 
 
 def main():
@@ -88,12 +87,11 @@ def main():
                 time_now = datetime.now().strftime("%H:%M")
                 if time_now == t_time:
                     attendance()
-                    time.sleep(60)
+                    send_email()
+                    sleep = 60*60*20
+                    time.sleep(sleep)
                     break
     except KeyboardInterrupt:
         print('\nProgramme Terminated')
 
 
-get_time()
-#attendance()
-send_email()
