@@ -78,6 +78,8 @@ def attendance():
     time_out_m.send_keys(f_ran_min)
     note.send_keys("Emeka's attendance")
     form.click()
+    time.sleep(2)
+    driver.close()
 
 
 def main():
@@ -86,8 +88,9 @@ def main():
             print('--------------------------------------------')
             print("Running Emeka's Script, Please do not close")
             print('--------------------------------------------')
+            print('Program is active...')
             get_time()
-            print('Program is due to act on {}'.format(t_time))
+            print('Next attendance will be automated at {}'.format(t_time))
             while True:
                 time_now = datetime.now().strftime("%H:%M")
                 if time_now == t_time:
@@ -95,6 +98,7 @@ def main():
                     send_email()
                     print(msg)
                     print('Program is Sleeping for 20 hours')
+                    print('--------------------------------------------\n')
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
