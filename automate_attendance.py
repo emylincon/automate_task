@@ -19,9 +19,9 @@ def get_time():
 
     d = date.today()
     s_ran_hour = random.randint(8, 9)
-    s_ran_min = randrange(60)
+    s_ran_min = randrange(10, 59)
     f_ran_hour = random.randint(21, 23)
-    f_ran_min = randrange(60)
+    f_ran_min = randrange(10, 59)
     t_time = '{}:{}'.format(f_ran_hour, f_ran_min)
     _timer = datetime(d.year, d.month, d.day, f_ran_hour, f_ran_min).strftime("%d/%m/%y %H:%M")
 
