@@ -108,10 +108,6 @@ def main():
         print('\nProgramme Terminated')
 
 
-'''
 if __name__ == "__main__":
     main()
-'''
-get_time()
-send_email()
-print('DONE')
+
