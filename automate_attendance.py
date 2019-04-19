@@ -106,8 +106,10 @@ def main():
                     print('Program is Sleeping for 20 hours')
                     print('--------------------------------------------\n')
                     if _day() == 'saturday':
+                        print('Program next active on Monday')
                         slp = 60*60*24
                         time.sleep(slp)
+
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
