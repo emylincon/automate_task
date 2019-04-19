@@ -5,7 +5,13 @@ import random as random
 from random import randrange
 import time
 import smtplib
+import calendar
 import config
+
+
+def _day():
+    x = calendar.day_name[d.weekday()]
+    return x.lower()
 
 
 def get_time():
@@ -99,6 +105,9 @@ def main():
                     print(msg)
                     print('Program is Sleeping for 20 hours')
                     print('--------------------------------------------\n')
+                    if _day() == 'saturday':
+                        slp = 60*60*24
+                        time.sleep(slp)
                     sleep = 60*60*20
                     time.sleep(sleep)
                     break
