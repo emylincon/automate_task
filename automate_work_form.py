@@ -6,6 +6,7 @@ import schedule
 import time
 import config
 import smtplib
+import os
 
 __author__ = 'Emmanuel'
 
@@ -20,7 +21,6 @@ def _day():
 def initialization():
     global driver
 
-    passwd = gp.getpass('Password: ').strip()
     driver = webdriver.Chrome(executable_path=r"C:\Program Files\chrome driver\chromedriver.exe")
     driver.get('https://mypayments.lsbu.ac.uk/vts/')
     username = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldUserName"]')
@@ -74,6 +74,8 @@ def francis(day):
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
+    driver.close()
+    send_email('Management Concepts and Evaluation Techniques')
 
 
 def lucia():
@@ -107,6 +109,8 @@ def lucia():
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
+    driver.close()
+    send_email('ICT Project Management in Practice')
 
 
 def lucia_prepare():
@@ -139,6 +143,8 @@ def lucia_prepare():
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
+    driver.close()
+    send_email('Preparation: ICT Project Management in Practice')
 
 
 def iot():
@@ -172,7 +178,8 @@ def iot():
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
-
+    driver.close()
+    send_email('Embedded Systems and Internet of things')
 
 
 def send_email(module):
@@ -192,19 +199,24 @@ def send_email(module):
     except Exception as e:
         print(e)
 #francis(_day().lower())
-#francis('thursday')
+#francis('tuesday')
 #lucia()
+#lucia_prepare()
 #iot()
 
 
 def main():
+    global passwd
+
+    passwd = gp.getpass('Password: ').strip()
+    os.system('clear')
     print('--------------------------------------------')
     print("Running Emeka's Script, Please do not close")
     print('--------------------------------------------')
     print('Program is active...')
     schedule.every().tuesday.at("18:30").do(francis(_day()))
     schedule.every().wednesday.at("15:00").do(lucia)
-    schedule.every().wednesday.at("15:00").do(lucia_prepare)
+    schedule.every().wednesday.at("15:10").do(lucia_prepare)
     schedule.every().thursday.at("14:00").do(francis(_day))
     schedule.every().thursday.at("19:00").do(iot)
     while True:
