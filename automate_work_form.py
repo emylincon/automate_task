@@ -4,7 +4,8 @@ import calendar
 import getpass as gp
 import schedule
 import time
-
+import config
+import smtplib
 
 __author__ = 'Emmanuel'
 
@@ -173,6 +174,23 @@ def iot():
     okay.click()
 
 
+
+def send_email(module):
+    global msg
+    try:
+        # server = smtplib.SMTP('smtp.gmail.com:587')
+        server = smtplib.SMTP_SSL('smtp.gmail.com')
+        server.ehlo()
+        # server.starttls()
+        server.login(config.email_address, config.password)
+        subject = 'Work form'
+        msg = 'Work form done for {}'.format(module)
+        message = 'Subject: {}\n\n{}\n\n SENT BY RIHANNA \n\n'.format(subject, msg)
+        server.sendmail(config.email_address, config.send_email, message)
+        server.quit()
+        print("Email sent!")
+    except Exception as e:
+        print(e)
 #francis(_day().lower())
 #francis('thursday')
 #lucia()
