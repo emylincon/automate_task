@@ -191,7 +191,7 @@ def main():
     schedule.every().thursday.at("19:00").do(iot)
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(50)
 
 
 if __name__ == "__main__":
