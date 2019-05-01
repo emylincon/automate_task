@@ -42,9 +42,10 @@ def initialization():
 def send_email():
     global msg
     try:
-        server = smtplib.SMTP('smtp.gmail.com:587')
+        # server = smtplib.SMTP('smtp.gmail.com:587')
+        server = smtplib.SMTP_SSL('smtp.gmail.com')
         server.ehlo()
-        server.starttls()
+        # server.starttls()
         server.login(config.email_address, config.password)
         subject = 'Attendance form'
         msg = 'Attendance done for {}'.format(_timer)
