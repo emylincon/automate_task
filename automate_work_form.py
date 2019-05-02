@@ -76,6 +76,7 @@ def francis():
     okay.click()
     driver.close()
     send_email('Management Concepts and Evaluation Techniques')
+    print('\nManagement Concepts and Evaluation Techniques done')
 
 
 def lucia():
@@ -111,6 +112,7 @@ def lucia():
     okay.click()
     driver.close()
     send_email('ICT Project Management in Practice')
+    print('\nICT Project Management in Practice done')
 
 
 def lucia_prepare():
@@ -145,6 +147,7 @@ def lucia_prepare():
     okay.click()
     driver.close()
     send_email('Preparation: ICT Project Management in Practice')
+    print('\nPreparation: ICT Project Management in Practice done')
 
 
 def iot():
@@ -180,6 +183,7 @@ def iot():
     okay.click()
     driver.close()
     send_email('Embedded Systems and Internet of things')
+    print('\nEmbedded Systems and Internet of things done')
 
 
 def send_email(module):
