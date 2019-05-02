@@ -1,12 +1,11 @@
 from selenium import webdriver
 from datetime import *
 import calendar
-import getpass as gp
 import schedule
 import time
 import config
 import smtplib
-import os
+
 
 __author__ = 'Emmanuel'
 
@@ -36,7 +35,8 @@ def initialization():
     submit_claims.click()
 
 
-def francis(day):
+def francis():
+    day = _day()
     initialization()
     select_CMIT = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__0"]').click()
     select_OK = driver.find_element_by_xpath(
@@ -208,16 +208,15 @@ def send_email(module):
 def main():
     global passwd
 
-    passwd = gp.getpass('Password: ').strip()
-    os.system('clear')
+    passwd = config.passwd
     print('--------------------------------------------')
     print("Running Emeka's Script, Please do not close")
     print('--------------------------------------------')
     print('Program is active...')
-    schedule.every().tuesday.at("18:30").do(francis(_day()))
+    schedule.every().tuesday.at("18:30").do(francis)
     schedule.every().wednesday.at("15:00").do(lucia)
     schedule.every().wednesday.at("15:10").do(lucia_prepare)
-    schedule.every().thursday.at("14:00").do(francis(_day))
+    schedule.every().thursday.at("14:00").do(francis)
     schedule.every().thursday.at("19:00").do(iot)
     while True:
         schedule.run_pending()
