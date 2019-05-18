@@ -219,7 +219,7 @@ def main():
     print('Program is active...')
     schedule.every().tuesday.at("18:30").do(francis)
     schedule.every().wednesday.at("15:00").do(lucia)
-    schedule.every().wednesday.at("15:10").do(lucia_prepare)
+    schedule.every().monday.at("15:10").do(lucia_prepare)
     schedule.every().thursday.at("14:00").do(francis)
     schedule.every().thursday.at("19:00").do(iot)
     while True:
