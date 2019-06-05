@@ -72,7 +72,7 @@ def attendance():
     time_out_m = driver.find_element_by_xpath(xpath='//*[@id="mG61Hd"]/div/div[2]/div[2]/div[7]/div/div[2]/div[3]/div/div[1]/div/div[1]/input')
     #time_out_ap = driver.find_element_by_xpath(xpath='//*[@id="mG61Hd"]/div/div[2]/div[2]/div[7]/div/div[2]/div[4]/div[1]/div[1]/div[1]')
     note = driver.find_element_by_xpath(xpath='//*[@id="mG61Hd"]/div/div[2]/div[2]/div[8]/div/div[2]/div/div[1]/div/div[1]/input')
-    form = driver.find_element_by_xpath(xpath='//*[@id="mG61Hd"]/div/div[2]/div[3]/div[1]/div/div/content/span')
+    form = driver.find_element_by_xpath(xpath='//*[@id="mG61Hd"]/div/div[2]/div[3]/div[1]/div/div/span/span')
 
     student_id.send_keys('3331605')
     first_name.send_keys('Emeka')
@@ -85,7 +85,7 @@ def attendance():
     time_out_m.send_keys(f_ran_min)
     note.send_keys("Emeka's attendance")
     form.click()
-    time.sleep(2)
+    time.sleep(20)
     driver.close()
 
 
