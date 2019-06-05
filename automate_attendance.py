@@ -85,7 +85,7 @@ def attendance():
     time_out_m.send_keys(f_ran_min)
     note.send_keys("Emeka's attendance")
     form.click()
-    time.sleep(20)
+    time.sleep(2)
     driver.close()
 
 
