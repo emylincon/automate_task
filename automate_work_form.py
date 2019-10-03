@@ -21,7 +21,6 @@ def get_time():
     _time = str(datetime.now()).split(' ')[1]
 
 
-
 def initialization():
     global driver
 
@@ -65,12 +64,22 @@ def fcs():
     # add_hours_CMIT = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span').click()
     work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
     #work_date.send_keys('{}\{}\{}'.format(28, 3, 2019))
+    if datetime.now().hour == 11:
+        start_time.send_keys('09:00')
+        finish_time.send_keys('11:00')
+        comment.send_keys('Fundamentals of Computer Science')
+        hours_worked.send_keys('2')
+    elif datetime.now().hour == 18:
+        start_time.send_keys('17:00')
+        finish_time.send_keys('18:00')
 
-    start_time.send_keys('09:00')
-    finish_time.send_keys('11:00')
+        hours_worked.send_keys('1')
+    else:
+        start_time.send_keys(input("Enter Start Time: "))
+        finish_time.send_keys(input("Enter Finish Time: "))
+        hours_worked.send_keys(input("Hours Worked: "))
+
     comment.send_keys('Fundamentals of Computer Science')
-
-    hours_worked.send_keys('2')
     sick_hours.send_keys('0')
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
@@ -103,9 +112,21 @@ def fsd():
     comment = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldComment"]')
     work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
     #work_date.send_keys('{}\{}\{}'.format(25, 3, 2019))
-    start_time.send_keys('12:00')
-    finish_time.send_keys('14:00')
-    hours_worked.send_keys('2')
+
+    if datetime.now().hour == 11:
+        start_time.send_keys('12:00')
+        finish_time.send_keys('14:00')
+        hours_worked.send_keys('2')
+    elif datetime.now().hour == 18:
+        start_time.send_keys('17:00')
+        finish_time.send_keys('18:00')
+        hours_worked.send_keys('1')
+    else:
+        start_time.send_keys(input("Enter Start Time: "))
+        finish_time.send_keys(input("Enter Finish Time: "))
+        comment.send_keys('Fundamentals of Computer Science')
+        hours_worked.send_keys(input("Hours Worked: "))
+
     sick_hours.send_keys('0')
     comment.send_keys('Fundamentals of Software Development Tutorial')
     okay = driver.find_element_by_xpath(
@@ -183,7 +204,6 @@ def send_email(module):
 #iot()
 
 
-
 def main():
     global passwd
 
@@ -192,11 +212,11 @@ def main():
     print("Running Emeka's Script, Please do not close")
     print('--------------------------------------------')
     print('Program is active...')
-    schedule.every().tuesday.at("18:30").do(fcs)
-    schedule.every().wednesday.at("15:00").do(lucia)
-    schedule.every().monday.at("15:10").do(lucia_prepare)
-    schedule.every().thursday.at("14:00").do(francis)
-    schedule.every().thursday.at("19:00").do(iot)
+    schedule.every().tuesday.at("11:10").do(fcs)
+    schedule.every().tuesday.at("14:10").do(fsd)
+    schedule.every().tuesday.at("18:10").do(mixed_learning)
+    schedule.every().friday.at("11:10").do(sfe)
+
     while True:
         schedule.run_pending()
         time.sleep(50)

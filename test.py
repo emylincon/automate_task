@@ -1,3 +1,7 @@
+import schedule
+import time
+
+
 def hello():
     print("hello")
 
@@ -13,4 +17,9 @@ def mixed():
         print('__--__')
 
 
-mixed()
+schedule.every().thursday.at("19:02").do(mixed)
+
+while True:
+    print('Listening...')
+    schedule.run_pending()
+    time.sleep(50)
