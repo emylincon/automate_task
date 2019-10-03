@@ -8,13 +8,18 @@ import smtplib
 
 
 __author__ = 'Emmanuel'
-
+passwd = config.passwd
 d = date.today()
 
 
 def _day():
     x = calendar.day_name[d.weekday()]
     return x.lower()
+
+
+def get_time():
+    _time = str(datetime.now()).split(' ')[1]
+
 
 
 def initialization():
@@ -35,8 +40,7 @@ def initialization():
     submit_claims.click()
 
 
-def francis():
-    day = _day()
+def fcs():
     initialization()
     select_CMIT = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__0"]').click()
     select_OK = driver.find_element_by_xpath(
@@ -61,25 +65,22 @@ def francis():
     # add_hours_CMIT = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span').click()
     work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
     #work_date.send_keys('{}\{}\{}'.format(28, 3, 2019))
-    if day == 'tuesday':
-        start_time.send_keys('14:00')
-        finish_time.send_keys('16:00')
-        comment.send_keys('Management Concepts and Evaluation Techniques 1')
-    elif day == 'thursday':
-        start_time.send_keys('11:00')
-        finish_time.send_keys('13:00')
-        comment.send_keys('Management Concepts and Evaluation Techniques 2')
+
+    start_time.send_keys('09:00')
+    finish_time.send_keys('11:00')
+    comment.send_keys('Fundamentals of Computer Science')
+
     hours_worked.send_keys('2')
     sick_hours.send_keys('0')
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
     driver.close()
-    send_email('Management Concepts and Evaluation Techniques')
-    print('\nManagement Concepts and Evaluation Techniques done')
+    send_email('Fundamentals of Computer Science')
+    print('\nFundamentals of Computer Science')
 
 
-def lucia():
+def fsd():
     initialization()
     select_MIP = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__1"]').click()
     select_OK = driver.find_element_by_xpath(
@@ -102,55 +103,26 @@ def lucia():
     comment = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldComment"]')
     work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
     #work_date.send_keys('{}\{}\{}'.format(25, 3, 2019))
-    start_time.send_keys('10:00')
-    finish_time.send_keys('13:00')
-    hours_worked.send_keys('3')
+    start_time.send_keys('12:00')
+    finish_time.send_keys('14:00')
+    hours_worked.send_keys('2')
     sick_hours.send_keys('0')
-    comment.send_keys('ICT Project Management in Practice')
+    comment.send_keys('Fundamentals of Software Development Tutorial')
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
     driver.close()
-    send_email('ICT Project Management in Practice')
-    print('\nICT Project Management in Practice done')
+    send_email('Fundamentals of Software Development Tutorial')
+    print('\nFundamentals of Software Development Tutorial')
 
 
-def lucia_prepare():
-    initialization()
-    select_MIP = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__1"]').click()
-    select_OK = driver.find_element_by_xpath(
-        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
-    select_OK.click()
-
-    add_hours = driver.find_element_by_xpath(
-        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a').click()
-
-    work_date = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldWorkDte_dateInput"]')
-
-    start_time = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldStTime"]')
-
-    finish_time = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldEnTime"]')
-
-    hours_worked = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldActHours"]')
-
-    sick_hours = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldSickHours"]')
-
-    comment = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldComment"]')
-    work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
-    start_time.send_keys('18:00')
-    finish_time.send_keys('19:00')
-    hours_worked.send_keys('1')
-    sick_hours.send_keys('0')
-    comment.send_keys('Preparation: ICT Project Management in Practice')
-    okay = driver.find_element_by_xpath(
-        xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
-    okay.click()
-    driver.close()
-    send_email('Preparation: ICT Project Management in Practice')
-    print('\nPreparation: ICT Project Management in Practice done')
+def mixed_learning():
+    mixed_list = [fsd, fcs]
+    for module in mixed_list:
+        module()
 
 
-def iot():
+def sfe():
     initialization()
     select_iot = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__2"]').click()
     select_OK = driver.find_element_by_xpath(
@@ -173,17 +145,17 @@ def iot():
     comment = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldComment"]')
     work_date.send_keys('{}\{}\{}'.format(d.day, d.month, d.year))
     #work_date.send_keys('{}\{}\{}'.format(28, 3, 2019))
-    start_time.send_keys('16:00')
-    finish_time.send_keys('18:00')
+    start_time.send_keys('09:00')
+    finish_time.send_keys('11:00')
     hours_worked.send_keys('2')
     sick_hours.send_keys('0')
-    comment.send_keys('Embedded Systems and Internet of things')
+    comment.send_keys('Software Engineering')
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
     okay.click()
     driver.close()
-    send_email('Embedded Systems and Internet of things')
-    print('\nEmbedded Systems and Internet of things done')
+    send_email('Software Engineering')
+    print('\nSoftware Engineering')
 
 
 def send_email(module):
@@ -202,11 +174,14 @@ def send_email(module):
         print("Email sent!")
     except Exception as e:
         print(e)
+
+
 #francis(_day().lower())
-#francis('tuesday')
+#francis()
 #lucia()
 #lucia_prepare()
 #iot()
+
 
 
 def main():
@@ -217,7 +192,7 @@ def main():
     print("Running Emeka's Script, Please do not close")
     print('--------------------------------------------')
     print('Program is active...')
-    schedule.every().tuesday.at("18:30").do(francis)
+    schedule.every().tuesday.at("18:30").do(fcs)
     schedule.every().wednesday.at("15:00").do(lucia)
     schedule.every().monday.at("15:10").do(lucia_prepare)
     schedule.every().thursday.at("14:00").do(francis)
@@ -229,4 +204,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
