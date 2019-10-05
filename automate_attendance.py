@@ -78,7 +78,18 @@ def attendance():
     first_name.send_keys('Emeka')
     surname.send_keys('Ugwuanyi')
     office_no.send_keys('FW210')
-    date_.send_keys('{}/{}/{}'.format(d.day, d.month, d.year))
+
+    if len(str(d.day)) == 2:
+        day = d.day
+    else:
+        day = f"0{d.day}"
+    if len(str(d.month)) == 2:
+        month = d.month
+    else:
+        month = f"0{d.month}"
+    date = f"{day}/{month}/{d.year}"
+    date_.send_keys(date)
+
     time_in_m.send_keys(s_ran_min)
     time_in_h.send_keys(s_ran_hour)
     time_out_h.send_keys(f_ran_hour)
