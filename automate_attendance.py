@@ -8,6 +8,8 @@ import smtplib
 import calendar
 import config
 
+# updated copy
+
 
 def _day():
     x = calendar.day_name[d.weekday()]
