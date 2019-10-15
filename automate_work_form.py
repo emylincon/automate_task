@@ -118,8 +118,8 @@ def fsd():
         finish_time.send_keys('14:00')
         hours_worked.send_keys('2')
     elif datetime.now().hour == 18:
-        start_time.send_keys('17:00')
-        finish_time.send_keys('18:00')
+        start_time.send_keys('16:00')
+        finish_time.send_keys('17:00')
         hours_worked.send_keys('1')
     else:
         start_time.send_keys(input("Enter Start Time: "))
