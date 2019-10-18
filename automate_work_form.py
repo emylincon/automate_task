@@ -6,7 +6,7 @@ import time
 import config
 import smtplib
 
-# done
+#
 __author__ = 'Emmanuel'
 passwd = config.passwd
 d = date.today()
