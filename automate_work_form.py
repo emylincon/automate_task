@@ -6,7 +6,7 @@ import time
 import config
 import smtplib
 
-# improving the project
+# improving the project deadlock
 __author__ = 'Emmanuel'
 passwd = config.passwd
 d = date.today()
