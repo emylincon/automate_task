@@ -23,9 +23,11 @@ def get_time():
 
 def initialization():
     global driver
-
-    driver = webdriver.Chrome(executable_path=r"C:\Program Files\chrome driver\chromedriver.exe")
-    driver.get('https://mypayments.lsbu.ac.uk/vts/')
+    try:
+        driver = webdriver.Chrome(executable_path=r"C:\Program Files\chrome driver\chromedriver.exe")
+        driver.get('https://mypayments.lsbu.ac.uk/vts/')
+    except Exception as e:
+        print(f"Upgrade your chrome driver \n {e}")
     username = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldUserName"]')
     password = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_fldPwd"]')
     login = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_cmdBar"]/div/div/div/ul/li[1]/a/span/span/span/span')
