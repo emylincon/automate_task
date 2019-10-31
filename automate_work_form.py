@@ -93,6 +93,7 @@ def fcs():
 
 def fsd():
     initialization()
+    # //*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__4"]
     select_MIP = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__1"]').click()
     select_OK = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
