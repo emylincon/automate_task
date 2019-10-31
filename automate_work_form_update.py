@@ -36,9 +36,8 @@ def initialization():
     password.send_keys(passwd)
 
     login.click()
-
-    submit_claims = driver.find_element_by_xpath(xpath='//*[@id="ctl00_VTSMnu"]/ul/li[7]/a/span')
-    submit_claims.click()
+    # //*[@id="ctl00_VTSMnu"]/ul/li[7]/a/span
+    driver.find_element_by_xpath(xpath='//*[@id="ctl00_VTSMnu"]/ul/li[7]/a/span').click()
 
 
 def fcs():
@@ -66,8 +65,8 @@ def fcs():
 
 
 def fsd():
-    initialization()
-
+    #initialization()
+    time.sleep(1)
     driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__4"]').click()
     select_ok = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
@@ -84,18 +83,18 @@ def fsd():
 
     okay = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
-    okay.click()
-    driver.close()
-    send_email('Fundamentals of Software Development Tutorial')
-    print('\nFundamentals of Software Development Tutorial')
+    #okay.click()
+    #driver.close()
+    #send_email('Fundamentals of Software Development Tutorial')
+    #print('\nFundamentals of Software Development Tutorial')
 
 
 def sfe():
     initialization()
-    select_iot = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__3"]').click()
-    select_OK = driver.find_element_by_xpath(
+    driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstSess_ctl00__3"]').click()
+    select_ok = driver.find_element_by_xpath(
         xpath='//*[@id="ctl00_ContentPlaceHolder1_RadToolBar1"]/div/div/div/ul/li[1]/a/span/span/span')
-    select_OK.click()
+    select_ok.click()
 
     worked_hours = driver.find_element_by_xpath(xpath='//*[@id="ctl00_ContentPlaceHolder1_lstClm_ctl00_ctl04_fldWork"]')
     worked_hours.send_keys('2.00')
@@ -131,7 +130,10 @@ def send_email(module):
     except Exception as e:
         print(e)
 
-
+initialization()
+fsd()
+#fcs()
+'''
 def main():
     global passwd
 
@@ -152,5 +154,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+'''
 
